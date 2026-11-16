@@ -1,0 +1,17 @@
+[ {
+  "nombre" : "Eduardo",
+  "apellidos" : "Cruz Muñoz",
+  "edad" : 22
+}, {
+  "nombre" : "Dolores",
+  "apellidos" : "Martinez",
+  "edad" : 43
+}, {
+  "nombre" : "Mario",
+  "apellidos" : "Torredelcampo",
+  "edad" : 19
+}, {
+  "nombre" : "Angel",
+  "apellidos" : "Miranda",
+  "edad" : 22
+} ]
