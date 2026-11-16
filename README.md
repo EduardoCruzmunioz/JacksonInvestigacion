@@ -41,8 +41,10 @@ jackson-investigacion/
 │   │       └── persona.json                             # Dataset de personas (10 registros variados)
 │   └── test/
 │       └── java/
-│           ├── EscritorJSONTest.java                    # Tests de Caja Blanca y Negra (Escritura)
-│           └── LectorJSONTest.java                      # Tests de Caja Blanca y Negra (Lectura)
+│           ├── EscritorJSONTest.java                    # Tests de Caja Blanca y Negra (Data Binding - Escritura)
+│           ├── JacksonStreamingTest.java                # Tests de Caja Blanca y Negra (Streaming API)
+│           ├── JSONTiempoRealTest.java                  # Tests de Caja Blanca y Negra (Tree Model)
+│           └── LectorJSONTest.java                      # Tests de Caja Blanca y Negra (Data Binding - Lectura)
 ├── .gitignore                                           # Exclusiones de build y dependencias
 ├── pom.xml                                              # Configuración Maven con JUnit 5 Jupiter
 └── README.md                                            # Documentación principal del proyecto
@@ -132,22 +134,19 @@ jackson-investigacion/
 
 ## 🧪 Pruebas Unitarias (Caja Blanca y Caja Negra)
 
-El proyecto cuenta con una suite completa de pruebas unitarias bajo **JUnit 5**, aplicando diseño **Clean Code** (patrón AAA, nombres descriptivos en español y aislamiento de ficheros con `@TempDir`):
+El proyecto cuenta con una suite integral de **35 pruebas unitarias** bajo **JUnit 5 (Jupiter)** y **Maven Surefire**, aplicando diseño **Clean Code** (patrón AAA, nombres descriptivos en español y aislamiento de ficheros con `@TempDir`):
 
-* **Caja Negra (`LectorJSONTest` y `EscritorJSONTest`)**:
-  * Particiones de equivalencia sobre el dataset de 10 personas.
-  * Análisis de valores límite (BVA): recién nacido (`edad = 0`), centenario (`edad = 102`), nombres con tildes y apóstrofes (`D'Alessandro`, `O'Connor`).
-  * Validación de ciclo completo (*Round-trip*): escritura de objeto y lectura simétrica verificando igualdad con `equals()`.
-  * Validación defensiva de precondiciones (`NullPointerException`).
-* **Caja Blanca (`LectorJSONTest` y `EscritorJSONTest`)**:
-  * Cobertura de ramas (*branch coverage*):
-    * Creación automática de directorios anidados y fichero inexistente.
-    * Inicialización limpia ante ficheros preexistentes vacíos (0 bytes).
-    * Acumulación correcta cuando el fichero tiene registros existentes.
-    * Detección y lanzamiento de excepciones (`FileNotFoundException`, `MismatchedInputException` ante formato objeto en vez de array, `IOException` ante sintaxis JSON corrupta).
-    * Verificación de formato e indentación con `SerializationFeature.INDENT_OUTPUT`.
+* **1. Data Binding (`LectorJSONTest` y `EscritorJSONTest` - 12 tests)**:
+  * *Caja Negra*: Particiones de equivalencia sobre el dataset de 10 personas, valores límite (0 y 102 años), ciclo *Round-trip* completo, acumulación secuencial y rechazo de nulos.
+  * *Caja Blanca*: Cobertura de ramas para creación de subdirectorios, inicialización ante ficheros vacíos (0 bytes), formato indentado `INDENT_OUTPUT` y excepciones (`FileNotFoundException`, `MismatchedInputException` ante formato objeto en vez de array, `IOException`).
+* **2. Tree Model (`JSONTiempoRealTest` - 13 tests)**:
+  * *Caja Negra*: Generación de cadenas, navegación nodo a nodo con `JsonNode.get()`, valores límite y **demostración empírica del punto débil** (rotura por `JsonParseException` cuando el nombre contiene comillas dobles sin escapar).
+  * *Caja Blanca*: Detección de cadenas en blanco, sintaxis truncada, validación de tipo `ObjectNode`, campos ausentes (`null`) y mapeo resiliente con valores por defecto.
+* **3. Streaming API (`JacksonStreamingTest` - 10 tests)**:
+  * *Caja Negra*: Flujo bidireccional streaming con `JsonGenerator` y `JsonParser`, preservación secuencial y **demostración de la ventaja sobre el Tree Model** (`JsonGenerator` escapa comillas automáticamente sin corromper el documento).
+  * *Caja Blanca*: Emisión del array inicial `START_ARRAY`, duplicación de arrays previos con `copyCurrentStructure`, migración transparente de ficheros antiguos de un solo objeto `{}` a lista `[]`, y resiliencia ante campos desconocidos con `skipChildren()`.
 
-> Consulta la memoria detallada y la matriz de pruebas en [docs/pruebas_unitarias_caja_blanca_caja_negra.md](docs/pruebas_unitarias_caja_blanca_caja_negra.md).
+> Consulta la memoria exhaustiva, diagramas y matrices de prueba en [docs/pruebas_unitarias_caja_blanca_caja_negra.md](docs/pruebas_unitarias_caja_blanca_caja_negra.md).
 
 ### Ejecución de Pruebas
 
