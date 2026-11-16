@@ -22,25 +22,30 @@ Todos los programas operan sobre una colección de personas (`src/main/resources
 
 ```text
 jackson-investigacion/
-├── docs/                                    # Documentación y material de soporte
-│   ├── Cruz_Edu_Miranda_Angel_T2_JSON.pptx  # Presentación visual del proyecto
-│   ├── explicacion_JacksonStreaming.md      # Guía detallada y chuleta de métodos
-│   ├── guion_estudio_jackson.docx           # Guion de estudio (Word)
-│   └── guion_estudio_jackson.md             # Guion de estudio (Markdown)
+├── docs/                                                # Documentación y material de soporte
+│   ├── Cruz_Edu_Miranda_Angel_T2_JSON.pptx              # Presentación visual del proyecto
+│   ├── explicacion_JacksonStreaming.md                  # Guía detallada y chuleta de métodos
+│   ├── guion_estudio_jackson.docx                       # Guion de estudio (Word)
+│   ├── guion_estudio_jackson.md                         # Guion de estudio (Markdown)
+│   └── pruebas_unitarias_caja_blanca_caja_negra.md      # Documentación exhaustiva de pruebas
 ├── src/
-│   └── main/
-│       ├── java/
-│       │   ├── models/
-│       │   │   └── Persona.java             # Modelo POJO (constructor, getters, setters)
-│       │   ├── EscritorJSON.java            # Data Binding: Escritura y acumulación
-│       │   ├── LectorJSON.java              # Data Binding: Lectura tipada
-│       │   ├── JSONTiempoReal.java          # Tree Model: Entrada manual e interpretación
-│       │   └── JacksonStreaming.java        # Streaming API: Parser y Generator
-│       └── resources/
-│           └── persona.json                 # Almacén de datos persistente (JSON Array)
-├── .gitignore                               # Exclusiones de build y dependencias
-├── pom.xml                                  # Configuración de dependencias Maven
-└── README.md                                # Documentación principal del proyecto
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── models/
+│   │   │   │   └── Persona.java                         # Modelo POJO (equals, hashCode, toString)
+│   │   │   ├── EscritorJSON.java                        # Data Binding: Escritura y acumulación
+│   │   │   ├── LectorJSON.java                          # Data Binding: Lectura tipada
+│   │   │   ├── JSONTiempoReal.java                      # Tree Model: Entrada manual e interpretación
+│   │   │   └── JacksonStreaming.java                    # Streaming API: Parser y Generator
+│   │   └── resources/
+│   │       └── persona.json                             # Dataset de personas (10 registros variados)
+│   └── test/
+│       └── java/
+│           ├── EscritorJSONTest.java                    # Tests de Caja Blanca y Negra (Escritura)
+│           └── LectorJSONTest.java                      # Tests de Caja Blanca y Negra (Lectura)
+├── .gitignore                                           # Exclusiones de build y dependencias
+├── pom.xml                                              # Configuración Maven con JUnit 5 Jupiter
+└── README.md                                            # Documentación principal del proyecto
 ```
 
 ---
@@ -122,6 +127,33 @@ jackson-investigacion/
 * **MismatchedInputException**:
   * *Problema*: Excepción al intentar deserializar un objeto individual `{}` como una lista `[]`.
   * *Solución*: Comprobación condicional del token de entrada (`JsonToken.START_ARRAY` vs `JsonToken.START_OBJECT`).
+
+---
+
+## 🧪 Pruebas Unitarias (Caja Blanca y Caja Negra)
+
+El proyecto cuenta con una suite completa de pruebas unitarias bajo **JUnit 5**, aplicando diseño **Clean Code** (patrón AAA, nombres descriptivos en español y aislamiento de ficheros con `@TempDir`):
+
+* **Caja Negra (`LectorJSONTest` y `EscritorJSONTest`)**:
+  * Particiones de equivalencia sobre el dataset de 10 personas.
+  * Análisis de valores límite (BVA): recién nacido (`edad = 0`), centenario (`edad = 102`), nombres con tildes y apóstrofes (`D'Alessandro`, `O'Connor`).
+  * Validación de ciclo completo (*Round-trip*): escritura de objeto y lectura simétrica verificando igualdad con `equals()`.
+  * Validación defensiva de precondiciones (`NullPointerException`).
+* **Caja Blanca (`LectorJSONTest` y `EscritorJSONTest`)**:
+  * Cobertura de ramas (*branch coverage*):
+    * Creación automática de directorios anidados y fichero inexistente.
+    * Inicialización limpia ante ficheros preexistentes vacíos (0 bytes).
+    * Acumulación correcta cuando el fichero tiene registros existentes.
+    * Detección y lanzamiento de excepciones (`FileNotFoundException`, `MismatchedInputException` ante formato objeto en vez de array, `IOException` ante sintaxis JSON corrupta).
+    * Verificación de formato e indentación con `SerializationFeature.INDENT_OUTPUT`.
+
+> Consulta la memoria detallada y la matriz de pruebas en [docs/pruebas_unitarias_caja_blanca_caja_negra.md](docs/pruebas_unitarias_caja_blanca_caja_negra.md).
+
+### Ejecución de Pruebas
+
+```powershell
+mvn test
+```
 
 ---
 
