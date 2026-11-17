@@ -24,7 +24,7 @@ class EscritorJSONTest {
     class PruebasCajaNegra {
 
         @Test
-        @DisplayName("Deberia persistir y permitir recuperar fielmente los datos de una persona (Round-trip)")
+        @DisplayName("Debería persistir y permitir recuperar fielmente los datos de una persona (Round-trip)")
         void deberiaEscribirYRecuperarPersonaEnCicloCompleto(@TempDir Path tempDir) throws IOException {
             // Arrange
             Path destino = tempDir.resolve("persona_test.json");
@@ -41,7 +41,7 @@ class EscritorJSONTest {
         }
 
         @Test
-        @DisplayName("Deberia acumular registros consecutivos sin sobrescribir el historico")
+        @DisplayName("Debería acumular registros consecutivos sin sobrescribir el historico")
         void deberiaPreservarRegistrosPreviosAlAgregarNuevaPersona(@TempDir Path tempDir) throws IOException {
             // Arrange
             Path destino = tempDir.resolve("personas_acumuladas.json");
@@ -59,7 +59,7 @@ class EscritorJSONTest {
         }
 
         @Test
-        @DisplayName("Deberia rechazar parametros nulos con NullPointerException explicito")
+        @DisplayName("Debería rechazar parametros nulos con NullPointerException explicito")
         void deberiaRechazarArgumentosNulos(@TempDir Path tempDir) {
             Path destino = tempDir.resolve("test.json");
             Persona valida = new Persona("Test", "Test", 20);

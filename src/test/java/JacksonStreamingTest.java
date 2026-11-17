@@ -26,7 +26,7 @@ class JacksonStreamingTest {
     class PruebasCajaNegra {
 
         @Test
-        @DisplayName("Deberia escribir y leer una persona correctamente en flujo Streaming")
+        @DisplayName("Debería escribir y leer una persona correctamente en flujo Streaming")
         void deberiaEscribirYLeerPersonaEnFlujoStreaming(@TempDir Path tempDir) throws IOException {
             // Arrange
             Path destino = tempDir.resolve("streaming_persona.json");
@@ -45,7 +45,7 @@ class JacksonStreamingTest {
         }
 
         @Test
-        @DisplayName("Deberia acumular multiples personas preservando el orden secuencial de emision")
+        @DisplayName("Debería acumular multiples personas preservando el orden secuencial de emision")
         void deberiaAcumularMultiplesPersonasPreservandoElOrdenSecuencial(@TempDir Path tempDir) throws IOException {
             // Arrange
             Path destino = tempDir.resolve("streaming_acumulado.json");
@@ -81,7 +81,7 @@ class JacksonStreamingTest {
         }
 
         @Test
-        @DisplayName("Deberia soportar valores limite de edad (0 y 102 anos) y caracteres especiales en UTF-8")
+        @DisplayName("Debería soportar valores limite de edad (0 y 102 anos) y caracteres especiales en UTF-8")
         void deberiaSoportarValoresLimiteDeEdadYCaracteresEspeciales(@TempDir Path tempDir) throws IOException {
             // Arrange
             Path destino = tempDir.resolve("limites.json");
@@ -101,7 +101,7 @@ class JacksonStreamingTest {
         }
 
         @Test
-        @DisplayName("Deberia rechazar parametros nulos con NullPointerException defensivo")
+        @DisplayName("Debería rechazar parametros nulos con NullPointerException defensivo")
         void deberiaRechazarParametrosNulosConNullPointerException(@TempDir Path tempDir) {
             Path destino = tempDir.resolve("test.json");
 

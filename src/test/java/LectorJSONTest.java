@@ -27,7 +27,7 @@ class LectorJSONTest {
     class PruebasCajaNegra {
 
         @Test
-        @DisplayName("Deberia deserializar exitosamente la lista de 10 personas del recurso real")
+        @DisplayName("Debería deserializer exitosamente la lista de 10 personas del recurso real")
         void deberiaLeerListaDePersonasDesdeFicheroReal() throws IOException {
             // Arrange: Ruta al recurso real del proyecto
             Path rutaRecurso = Paths.get("src", "main", "resources", "persona.json");
@@ -46,7 +46,7 @@ class LectorJSONTest {
         }
 
         @Test
-        @DisplayName("Deberia soportar valores limite de edad (0 y 102) y caracteres especiales")
+        @DisplayName("Debería soportar valores limite de edad (0 y 102) y caracteres especiales")
         void deberiaMapearCorrectamenteValoresLimiteYCaracteresEspeciales() throws IOException {
             // Arrange
             Path rutaRecurso = Paths.get("src", "main", "resources", "persona.json");
@@ -70,7 +70,7 @@ class LectorJSONTest {
         }
 
         @Test
-        @DisplayName("Deberia rechazar rutas nulas lanzando NullPointerException")
+        @DisplayName("Debería rechazar rutas nulas lanzando NullPointerException")
         void deberiaLanzarExcepcionSiRutaEsNula() {
             // Act & Assert
             NullPointerException excepcion = assertThrows(

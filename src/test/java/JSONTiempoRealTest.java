@@ -23,7 +23,7 @@ class JSONTiempoRealTest {
     class PruebasCajaNegra {
 
         @Test
-        @DisplayName("Deberia generar una cadena JSON valida con datos estandar")
+        @DisplayName("Debería generar una cadena JSON valida con datos estandar")
         void deberiaGenerarCadenaJsonCorrectaConDatosEstandar() {
             // Arrange
             String nombre = "Eduardo";
@@ -40,7 +40,7 @@ class JSONTiempoRealTest {
         }
 
         @Test
-        @DisplayName("Deberia interpretar fielmente los campos desde una cadena JSON valida")
+        @DisplayName("Debería interpretar fielmente los campos desde una cadena JSON valida")
         void deberiaInterpretarCamposCorrectamenteDesdeJsonValido() throws IOException {
             // Arrange
             String json = "{ \"nombre\": \"Ángel\", \"apellidos\": \"Miranda Ruiz\", \"edad\": 22 }";
@@ -58,7 +58,7 @@ class JSONTiempoRealTest {
 
         @ParameterizedTest(name = "Edad limite probada: {0} anos")
         @ValueSource(ints = {0, 102})
-        @DisplayName("Deberia soportar valores limite de edad en la interpretacion (0 y 102 anos)")
+        @DisplayName("Debería soportar valores limite de edad en la interpretacion (0 y 102 anos)")
         void deberiaSoportarValoresLimiteDeEdad(int edadLimite) throws IOException {
             // Arrange
             String json = JSONTiempoReal.generarJson("Test", "Limite", edadLimite);
@@ -71,7 +71,7 @@ class JSONTiempoRealTest {
         }
 
         @Test
-        @DisplayName("Deberia rechazar cadena JSON nula lanzando NullPointerException")
+        @DisplayName("Debería rechazar cadena JSON nula lanzando NullPointerException")
         void deberiaRechazarCadenaJsonNulaLanzandoNullPointerException() {
             assertThrows(NullPointerException.class, () -> JSONTiempoReal.interpretarJson(null));
         }
