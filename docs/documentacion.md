@@ -84,19 +84,26 @@ flowchart TD
    * `JSONTiempoReal`: Solicita interactivamente los datos por teclado y procesa el JSON en memoria.
    * `JacksonStreaming`: Solicita interactivamente los datos, actualiza el fichero en streaming y lee los tokens.
 
-#### Opción B: Desde Terminal (PowerShell / Bash)
-```powershell
-# 1. Posicionarse en el directorio raíz del proyecto
-cd "C:\Users\educr\Desktop\JAVA\JacksonInvestigacion"
+#### Opción B: Desde Terminal (PowerShell / Bash / CMD en cualquier equipo)
 
-# 2. Configurar JAVA_HOME si es necesario
-$env:JAVA_HOME = "C:\Users\educr\.jdks\openjdk-26.0.1"
+Los comandos son universales e independientes del equipo o sistema operativo (Windows, Linux, macOS), utilizando rutas relativas al proyecto:
 
-# 3. Compilar el proyecto completo
+```bash
+# 1. Clonar el repositorio y situarse en la raíz del proyecto
+git clone https://github.com/EduardoCruzmunioz/JacksonInvestigacion.git
+cd JacksonInvestigacion
+
+# 2. Compilar el proyecto y resolver dependencias
 mvn clean compile
 
-# 4. Ejecutar la suite completa de pruebas unitarias
+# 3. Ejecutar la suite completa de 35 pruebas unitarias
 mvn test
+
+# 4. Ejecutar cualquiera de las aplicaciones directamente por consola:
+mvn exec:java "-Dexec.mainClass=EscritorJSON"
+mvn exec:java "-Dexec.mainClass=LectorJSON"
+mvn exec:java "-Dexec.mainClass=JSONTiempoReal"
+mvn exec:java "-Dexec.mainClass=JacksonStreaming"
 ```
 
 ---
