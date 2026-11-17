@@ -97,7 +97,7 @@ Allí encontrarás en detalle:
 * Matriz exhaustiva de las 35 pruebas unitarias de Caja Blanca y Caja Negra.
 * Evidencias empíricas de ejecución con Maven Surefire.
 * Historial de problemas encontrados y su resolución técnica.
-* Comparativa multidimensional de las tres APIs de Jackson y chuleta rápida de métodos.
+* Comparativa multidimensional de las tres APIs de Jackson.
 
 ---
 

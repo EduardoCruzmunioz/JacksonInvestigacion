@@ -30,7 +30,6 @@
    - [5.1 Evidencia Empírica de Maven Surefire (`BUILD SUCCESS`)](#51-evidencia-empírica-de-maven-surefire-build-success)
    - [5.2 Diagnóstico y Resolución de Errores Encontrados](#52-diagnóstico-y-resolución-de-errores-encontrados)
 6. [Comparativa Técnica Global y Elección Arquitectónica](#6-comparativa-técnica-global-y-elección-arquitectónica)
-7. [Chuleta Rápida de Métodos y Preguntas de Repaso](#7-chuleta-rápida-de-métodos-y-preguntas-de-repaso)
 
 ---
 
@@ -462,27 +461,3 @@ Salida real obtenida en la ejecución automatizada con Maven 3.9 y OpenJDK 26:
 | **Seguridad con Comillas** | Total (automática) | **Vulnerable** (en concatenación) | Total (automática) |
 | **Facilidad y Mantenimiento** | **Máxima** (código mínimo) | Media | Compleja (control granular) |
 | **Veredicto / Recomendación** | **Elección estándar** para el 95% de desarrollos empresariales y APIs. | Ideal para scripts exploratorios y JSONs dinámicos. | **Imprescindible** para ficheros masivos (>500MB) o arquitecturas con recursos limitados. |
-
----
-
-## 7. Chuleta Rápida de Métodos y Preguntas de Repaso
-
-### Métodos Clave de Jackson
-
-* **`ObjectMapper.writeValue(File, Object)`**: Serializa cualquier estructura Java a JSON en disco.
-* **`ObjectMapper.readValue(File, TypeReference<T>)`**: Deserializa colecciones genéricas complejas evitando el borrado de tipos.
-* **`ObjectMapper.readTree(String)`**: Parsea texto JSON devolviendo un nodo raíz `JsonNode`.
-* **`JsonGenerator.copyCurrentStructure(JsonParser)`**: Clona un árbol completo de tokens directamente entre flujos.
-* **`JsonParser.nextToken()`**: Desplaza el cursor al siguiente evento léxico del documento.
-* **`JsonParser.skipChildren()`**: Salta recursivamente un objeto o array desconocido para garantizar tolerancia a fallos.
-
-### Preguntas Clave para Repaso y Examen
-
-1. **¿Por qué la clase `Persona` necesita obligatoriamente un constructor vacío?**  
-   Porque Jackson instancia los objetos mediante reflexión (`Class.getDeclaredConstructor().newInstance()`) antes de asignar valores a los atributos a través de los setters.
-
-2. **¿Por qué usamos `TypeReference` en `readValue` al deserializar la lista?**  
-   Por el mecanismo de *Type Erasure* de Java: en tiempo de compilación se conoce `List<Persona>`, pero en tiempo de ejecución solo existe `List`. `TypeReference` retiene la información del tipo genérico para que Jackson sepa a qué clase debe instanciar cada elemento.
-
-3. **¿Cuál es la diferencia fundamental entre el Tree Model y el Streaming API?**  
-   El Tree Model carga todo el documento JSON en memoria formando un árbol de objetos `JsonNode`. El Streaming API lee y escribe evento a evento sin mantener el documento en memoria, lo que permite procesar archivos de gigabytes con un consumo de RAM insignificante.
