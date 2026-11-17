@@ -2,7 +2,8 @@
 
 > **Módulo**: Acceso a Datos / Manejo de Ficheros (UD02)  
 > **Tema**: Interpretación y generación de JSON en tiempo real con Jackson  
-> **Autores**: Eduardo Cruz Muñoz y Ángel Miranda  
+> **Autores**: Eduardo Cruz Muñoz y Ángel Miranda ([@Angeell04](https://github.com/Angeell04))  
+> **Repositorio colaborativo**: [Angeell04/edu_angel_actividadGrupos](https://github.com/Angeell04/edu_angel_actividadGrupos)  
 > **Librería**: Jackson 2.22.4 (`jackson-databind`, `jackson-core`, `jackson-annotations`)
 
 ---

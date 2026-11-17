@@ -2,7 +2,8 @@
 
 > Proyecto práctico desarrollado para el ciclo formativo de **Desarrollo de Aplicaciones Multiplataforma (DAM)**.  
 > **Unidad**: Acceso a Datos / Manejo de Ficheros (UD02).  
-> **Tema**: Interpretación y generación de JSON en tiempo real con la librería **Jackson**.
+> **Tema**: Interpretación y generación de JSON en tiempo real con la librería **Jackson**.  
+> **Repositorio colaborativo original**: [Angeell04/edu_angel_actividadGrupos](https://github.com/Angeell04/edu_angel_actividadGrupos)
 
 ---
 
@@ -154,6 +155,9 @@ mvn test
 
 ---
 
-## 👥 Autores
-* **Eduardo Cruz Muñoz**
-* **Ángel Miranda**
+## 👥 Autores y Proyecto Colaborativo
+
+* **Eduardo Cruz Muñoz** ([@EduardoCruzmunioz](https://github.com/EduardoCruzmunioz))
+* **Ángel Miranda** ([@Angeell04](https://github.com/Angeell04))
+
+> 🔗 Este proyecto forma parte de la actividad grupal de DAM realizada conjuntamente. Puedes consultar también el repositorio de trabajo colaborativo en: [Angeell04/edu_angel_actividadGrupos](https://github.com/Angeell04/edu_angel_actividadGrupos).
