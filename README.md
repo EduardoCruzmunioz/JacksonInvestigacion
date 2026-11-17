@@ -25,6 +25,7 @@ Todos los programas operan sobre una colección de personas (`src/main/resources
 jackson-investigacion/
 ├── docs/                                                # Documentación y material de soporte
 │   ├── Cruz_Edu_Miranda_Angel_T2_JSON.pptx              # Presentación visual del proyecto
+│   ├── entrega_pruebas_y_documentacion.md               # Memoria oficial de entrega (Instrucciones, Código, Tablas y Evidencias)
 │   ├── guia_tecnica_jackson.md                          # Guía exhaustiva de la práctica, métodos y comparativa
 │   └── pruebas_unitarias_caja_blanca_caja_negra.md      # Documentación técnica de las 35 pruebas unitarias
 ├── src/
