@@ -37,10 +37,12 @@ nbdist/
 # Visual Studio Code
 .vscode/
 
-# Sistema operativo
+# Sistema operativo y archivos temporales de Office
 .DS_Store
 Thumbs.db
 desktop.ini
+~$*
+*.tmp
 
 # Material personal / Guiones de estudio
 *guion_estudio_jackson*
