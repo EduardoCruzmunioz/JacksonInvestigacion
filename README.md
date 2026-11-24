@@ -1,8 +1,6 @@
 # Investigación de la Librería Jackson en Java
 
-> **Módulo**: Acceso a Datos / Manejo de Ficheros (UD02)  
-> **Ciclo**: Desarrollo de Aplicaciones Multiplataforma (DAM)  
-> **Tema**: Interpretación y generación de JSON en tiempo real con la librería **Jackson**  
+> **Enfoque**: Serialización, análisis y generación de JSON de alto rendimiento con la librería **Jackson** en Java 
 > **Repositorio oficial**: [https://github.com/EduardoCruzmunioz/JacksonInvestigacion](https://github.com/EduardoCruzmunioz/JacksonInvestigacion)  
 > **Repositorio colaborativo original**: [https://github.com/Angeell04/edu_angel_actividadGrupos](https://github.com/Angeell04/edu_angel_actividadGrupos)
 
